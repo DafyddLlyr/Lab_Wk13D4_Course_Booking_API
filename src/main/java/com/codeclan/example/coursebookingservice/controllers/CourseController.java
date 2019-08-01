@@ -3,9 +3,7 @@ package com.codeclan.example.coursebookingservice.controllers;
 import com.codeclan.example.coursebookingservice.models.Course;
 import com.codeclan.example.coursebookingservice.repositories.courserepository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,4 +18,15 @@ public class CourseController {
     public List<Course> getAllCourses() {
         return courseRepository.findAll();
     }
+
+    @GetMapping("/rating/{rating}")
+    public List<Course> getCoursesByRating(@PathVariable int rating){
+        return courseRepository.findCourseByRating(rating);
+    }
+
+    @GetMapping("/customer/{id}")
+    public List<Course> getCourseBycustomer(@PathVariable Long id){
+        return  courseRepository.getCourseByCustomer(id);
+    }
+
 }
