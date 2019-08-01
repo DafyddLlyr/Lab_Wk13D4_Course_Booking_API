@@ -1,6 +1,7 @@
 package com.codeclan.example.coursebookingservice.controllers;
 
 import com.codeclan.example.coursebookingservice.models.Customer;
+import com.codeclan.example.coursebookingservice.repositories.bookingrepository.BookingRepository;
 import com.codeclan.example.coursebookingservice.repositories.customerrepository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ public class CustomerController {
     @Autowired
     CustomerRepository customerRepository;
 
+
     @GetMapping
     public List<Customer> getAllCustomers() {
         return customerRepository.findAll();
@@ -27,4 +29,15 @@ public class CustomerController {
         return customerRepository.findCustomersByCourse(id);
 
     }
+
+    @GetMapping("/town/{town}/course/{id}")
+    public List<Customer> findCustomerByCourseIDAndTown(@PathVariable Long id, @PathVariable String town) {
+        return customerRepository.findCustomerByCourseIDAndTown(id, town);
+    }
+
+    @GetMapping("/town/{town}/course/{id}/olderthan/{age}")
+    public List<Customer> findCustomerByCourseIDTownAndAge(@PathVariable Long id, @PathVariable String town, @PathVariable int age){
+        return customerRepository.findCustomerByCourseIDTownAndAge(id, town, age);
+    }
+
 }
