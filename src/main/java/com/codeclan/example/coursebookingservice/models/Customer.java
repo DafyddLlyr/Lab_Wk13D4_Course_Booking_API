@@ -3,6 +3,7 @@ package com.codeclan.example.coursebookingservice.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,7 +24,7 @@ public class Customer {
     @Column(name = "age")
     private int age;
 
-//    @JsonIgnoreProperties("something")
+    @JsonIgnoreProperties("customer")
     @OneToMany(mappedBy = "customer")
     private List<Booking> bookings;
 
@@ -31,6 +32,7 @@ public class Customer {
         this.name = name;
         this.town = town;
         this.age = age;
+        this.bookings = new ArrayList<>();
     }
 
     public Customer() {
