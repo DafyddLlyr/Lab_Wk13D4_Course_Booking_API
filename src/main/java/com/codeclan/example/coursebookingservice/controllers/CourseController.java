@@ -26,7 +26,8 @@ public class CourseController {
 
     @GetMapping("/customer/{id}")
     public List<Course> getCourseBycustomer(@PathVariable Long id){
-        return  courseRepository.getCourseByCustomer(id);
+//        return  courseRepository.getCourseByCustomer(id);
+        return courseRepository.findCourseByBookingsCustomerId(id);
     }
 
 }
