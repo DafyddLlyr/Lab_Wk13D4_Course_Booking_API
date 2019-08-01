@@ -13,28 +13,23 @@ import javax.persistence.EntityManager;
 import java.util.List;
 
 public class CourseRepositoryImpl implements CourseRepositoryCustom {
+
     @Autowired
     EntityManager entityManager;
 
     @Transactional
     public List<Course> getCourseByCustomer(Long id) {
-
         List<Course> result = null;
         Session session = entityManager.unwrap(Session.class);
-
         try{
             Criteria cr = session.createCriteria(Course.class);
             cr.createAlias("bookings", "booking");
             cr.add(Restrictions.eq("booking.customer.id", id));
             result = cr.list();
-
-
-
-
-        }catch (HibernateException e){
+        } catch (HibernateException e) {
             e.printStackTrace();
         }
         return result;
-
     }
+
 }

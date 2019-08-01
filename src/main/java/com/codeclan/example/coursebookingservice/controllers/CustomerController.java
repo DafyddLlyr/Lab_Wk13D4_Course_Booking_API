@@ -26,20 +26,20 @@ public class CustomerController {
 
     @GetMapping("/course/{id}")
     public List<Customer> getCustomerByCourse(@PathVariable Long id) {
-//        return customerRepository.findCustomersByCourse(id);
         return customerRepository.findCustomersByBookingsCourseId(id);
+//        return customerRepository.findCustomersByCourse(id);
     }
 
     @GetMapping("/course/{id}/town/{town}")
     public List<Customer> findCustomerByCourseIDAndTown(@PathVariable Long id, @PathVariable String town) {
-//        return customerRepository.findCustomerByCourseIDAndTown(id, town);
         return customerRepository.findCustomersByBookingsCourseIdAndTownIgnoreCase(id, town);
+//        return customerRepository.findCustomerByCourseIDAndTown(id, town);
     }
 
     @GetMapping("/course/{id}/town/{town}/olderthan/{age}")
     public List<Customer> findCustomerByCourseIDTownAndAge(@PathVariable Long id, @PathVariable String town, @PathVariable int age){
-//        return customerRepository.findCustomerByCourseIDTownAndAge(id, town, age);
         return customerRepository.findCustomersByBookingsCourseIdAndTownIgnoreCaseAndAgeGreaterThan(id, town, age);
+//        return customerRepository.findCustomerByCourseIDTownAndAge(id, town, age);
     }
 
 }

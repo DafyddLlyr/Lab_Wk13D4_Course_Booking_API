@@ -3,7 +3,6 @@ package com.codeclan.example.coursebookingservice.repositories.customerrepositor
 import com.codeclan.example.coursebookingservice.models.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -11,6 +10,9 @@ import java.util.List;
 public interface CustomerRepository extends JpaRepository<Customer, Long>, CustomerRepositoryCustom {
 
     public List<Customer> findCustomersByBookingsCourseId(Long Id);
+
     public List<Customer> findCustomersByBookingsCourseIdAndTownIgnoreCase(Long id, String town);
+
     public List<Customer> findCustomersByBookingsCourseIdAndTownIgnoreCaseAndAgeGreaterThan(Long id, String town, int age);
+
 }
